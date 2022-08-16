@@ -10,12 +10,12 @@ describe("tic-tac-toe", () => {
 
   const program = anchor.workspace.TicTacToe as Program<TicTacToe>;
 
-  it('setup game!', async() => {
+  it('setup game!', async () => {
     const gameKeypair = anchor.web3.Keypair.generate();
     const playerOne = (program.provider as anchor.AnchorProvider).wallet;
     const playerTwo = anchor.web3.Keypair.generate();
     await program.methods
-      .setup_game(playerTwo.publicKey)
+      .setupGame(playerTwo.publicKey)
       .accounts({
         game: gameKeypair.publicKey,
         playerOne: playerOne.publicKey,
@@ -31,6 +31,6 @@ describe("tic-tac-toe", () => {
     expect(gameState.state).to.eql({ active: {} });
     expect(gameState.board)
       .to
-      .eql([[null,null,null],[null,null,null],[null,null,null]]);
+      .eql([[null, null, null], [null, null, null], [null, null, null]]);
   });
 });
