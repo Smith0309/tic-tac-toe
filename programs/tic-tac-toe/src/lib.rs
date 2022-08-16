@@ -23,7 +23,7 @@ pub enum GameState {
     Won {winner : Pubkey},
 }
 
-#[derive(AnchorSerialize, AnchorDeserialize, FromPrimitive, ToPrimitive, Clone, PartialEq, Eq)]
+#[derive(AnchorSerialize, AnchorDeserialize, FromPrimitive, ToPrimitive, Copy, Clone, PartialEq, Eq)]
 pub enum Sign{
     X,
     O,
