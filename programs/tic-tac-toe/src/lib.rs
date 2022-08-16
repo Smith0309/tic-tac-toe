@@ -24,6 +24,19 @@ pub struct Game {
     state : GameState,
 }
 
+#[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]
+pub enum GameState {
+    Active,
+    Tie,
+    Won {winner : Pubkey},
+}
+
+#[derive(AnchorSerialize, AnchorDeserialize, FromPrimitive, ToPrimitive, Clone, PartialEq, Eq)]
+pub enum Sign{
+    X,
+    O,
+}
+
 impl Game {
     pub const MAXIMUM_SIZE: usize = (32 * 2) + 1 + (9 * (1 + 1)) + (32 + 1);
 
@@ -138,18 +151,4 @@ pub enum TicTacToeError {
     NotPlayersTurn,
     GameAlreadyStarted
 }
-
-#[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]
-pub enum GameState {
-    Active,
-    Tie,
-    Won {winner : Pubkey},
-}
-
-#[derive(AnchorSerialize, AnchorDeserialize, FromPrimitive, ToPrimitive, Clone, PartialEq, Eq)]
-pub enum Sign{
-    X,
-    O,
-}
-
 
