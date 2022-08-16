@@ -8,7 +8,7 @@ declare_id!("Fg6PaFpoGXkYsidMpWTK6W2BeZ7FEfcYkg476zPFsLnS");
 pub mod tic_tac_toe {
     use super::*;
 
-    pub fn setupGame(ctx: Context<SetupGame>, player_two: Pubkey) -> Result<()> {
+    pub fn setupgame(ctx: Context<SetupGame>, player_two: Pubkey) -> Result<()> {
         ctx.accounts.game.start([ctx.accounts.player_one.key(), player_two])
     }
 
