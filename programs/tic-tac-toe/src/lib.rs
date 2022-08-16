@@ -16,14 +16,6 @@ pub mod tic_tac_toe {
 #[derive(Accounts)]
 pub struct Initialize {}
 
-#[account]
-pub struct Game {
-    players : [Pubkey;2],
-    turn : u8,
-    board : [[Option<Sign> ; 3] ; 3],
-    state : GameState,
-}
-
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, PartialEq, Eq)]
 pub enum GameState {
     Active,
@@ -36,6 +28,22 @@ pub enum Sign{
     X,
     O,
 }
+
+#[derive(AnchorSerialize, AnchorDeserialize)]
+pub struct Tile {
+    row: u8,
+    column: u8,
+}
+
+
+#[account]
+pub struct Game {
+    players : [Pubkey;2],
+    turn : u8,
+    board : [[Option<Sign> ; 3] ; 3],
+    state : GameState,
+}
+
 
 impl Game {
     pub const MAXIMUM_SIZE: usize = (32 * 2) + 1 + (9 * (1 + 1)) + (32 + 1);
@@ -137,11 +145,6 @@ impl Game {
     }
 }
 
-#[derive(AnchorSerialize, AnchorDeserialize)]
-pub struct Tile {
-    row: u8,
-    column: u8,
-}
 
 #[error_code]
 pub enum TicTacToeError {
