@@ -14,8 +14,8 @@ describe("tic-tac-toe", () => {
     const gameKeypair = anchor.web3.Keypair.generate();
     const playerOne = (program.provider as anchor.AnchorProvider).wallet;
     const playerTwo = anchor.web3.Keypair.generate();
-    await program.methods
-      .setupgame(playerTwo.publicKey)
+    await program.instructions
+      .setup_game(playerTwo.publicKey)
       .accounts({
         game: gameKeypair.publicKey,
         playerOne: playerOne.publicKey,
